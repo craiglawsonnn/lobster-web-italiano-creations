@@ -14,7 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +28,11 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Menu", href: "#menu" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Book", href: "#booking" },
-    { name: "Contact", href: "#contact" },
+    { name: t('home'), href: "#home" },
+    { name: t('menu'), href: "#menu" },
+    { name: t('gallery'), href: "#gallery" },
+    { name: t('book'), href: "#booking" },
+    { name: t('contact'), href: "#contact" },
   ];
 
   return (

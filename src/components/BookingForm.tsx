@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BookingForm = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,8 +36,8 @@ const BookingForm = () => {
     setTimeout(() => {
       console.log("Form submitted:", formData);
       toast({
-        title: "Reservation Request Sent",
-        description: "We'll contact you shortly to confirm your reservation.",
+        title: t('reservationSent'),
+        description: t('willContact'),
         duration: 5000,
       });
       
@@ -57,58 +59,58 @@ const BookingForm = () => {
     <section id="booking" className="section-padding bg-restaurant-cream">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-restaurant-red text-center mb-6">
-          Book a Table
+          {t('bookingTitle')}
         </h2>
         <p className="text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          Reserve your table at Mr Lobster for an unforgettable Italian dining experience. We recommend booking in advance to secure your preferred date and time.
+          {t('bookingSubtitle')}
         </p>
         
         <div className="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-md">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">{t('fullName')} *</label>
                 <Input 
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your full name"
+                  placeholder={t('fullName')}
                   required
                   className="w-full"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">{t('email')} *</label>
                 <Input 
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Your email address"
+                  placeholder={t('email')}
                   required
                   className="w-full"
                 />
               </div>
               
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">{t('phone')} *</label>
                 <Input 
                   id="phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Your phone number"
+                  placeholder={t('phone')}
                   required
                   className="w-full"
                 />
               </div>
               
               <div>
-                <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">Number of Guests *</label>
+                <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">{t('guests')} *</label>
                 <Input 
                   id="guests"
                   name="guests"
@@ -116,14 +118,14 @@ const BookingForm = () => {
                   min="1"
                   value={formData.guests}
                   onChange={handleChange}
-                  placeholder="How many guests"
+                  placeholder={t('guests')}
                   required
                   className="w-full"
                 />
               </div>
               
               <div>
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date *</label>
+                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">{t('date')} *</label>
                 <Input 
                   id="date"
                   name="date"
@@ -136,7 +138,7 @@ const BookingForm = () => {
               </div>
               
               <div>
-                <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time *</label>
+                <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">{t('time')} *</label>
                 <Input 
                   id="time"
                   name="time"
@@ -149,13 +151,13 @@ const BookingForm = () => {
               </div>
               
               <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">{t('specialRequests')}</label>
                 <Textarea 
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Any special requests or dietary requirements?"
+                  placeholder={t('anyRequests')}
                   rows={4}
                   className="w-full"
                 />
@@ -168,7 +170,7 @@ const BookingForm = () => {
                 className="bg-restaurant-red hover:bg-restaurant-red/90 text-white py-6 px-10 text-lg"
                 disabled={loading}
               >
-                {loading ? "Sending..." : "Book Now"}
+                {loading ? t('sending') : t('bookNow')}
               </Button>
             </div>
           </form>

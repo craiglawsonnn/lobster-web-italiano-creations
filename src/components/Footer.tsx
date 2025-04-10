@@ -1,15 +1,18 @@
 
 import React from "react";
 import { Facebook, Instagram, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer id="contact" className="bg-restaurant-red text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-playfair font-bold text-2xl mb-4">Mr Lobster</h3>
-            <p className="mb-4">Family owned authentic Italian cuisine in the heart of Krakow.</p>
+            <p className="mb-4">{t('familyOwnedDesc')}</p>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/p/Mr-Lobster-Italiano-01-100063553000119/?locale=pl_PL" 
@@ -48,7 +51,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-playfair font-bold text-xl mb-4">Contact Us</h3>
+            <h3 className="font-playfair font-bold text-xl mb-4">{t('contactUs')}</h3>
             <div className="space-y-3">
               <div className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1" />
@@ -65,27 +68,26 @@ const Footer = () => {
               <div className="flex items-start">
                 <Clock className="h-5 w-5 mr-3 mt-1" />
                 <div>
-                  <p>Monday - Friday: 12:00 - 22:00</p>
-                  <p>Saturday - Sunday: 12:00 - 23:00</p>
+                  <p>{t('openHours')}</p>
                 </div>
               </div>
             </div>
           </div>
           
           <div>
-            <h3 className="font-playfair font-bold text-xl mb-4">Quick Links</h3>
+            <h3 className="font-playfair font-bold text-xl mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="hover:text-restaurant-cream transition-colors duration-300">Home</a>
+                <a href="#home" className="hover:text-restaurant-cream transition-colors duration-300">{t('home')}</a>
               </li>
               <li>
-                <a href="#menu" className="hover:text-restaurant-cream transition-colors duration-300">Menu</a>
+                <a href="#menu" className="hover:text-restaurant-cream transition-colors duration-300">{t('menu')}</a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-restaurant-cream transition-colors duration-300">Gallery</a>
+                <a href="#gallery" className="hover:text-restaurant-cream transition-colors duration-300">{t('gallery')}</a>
               </li>
               <li>
-                <a href="#booking" className="hover:text-restaurant-cream transition-colors duration-300">Book a Table</a>
+                <a href="#booking" className="hover:text-restaurant-cream transition-colors duration-300">{t('book')}</a>
               </li>
               <li>
                 <a 
@@ -94,7 +96,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-restaurant-cream transition-colors duration-300"
                 >
-                  Reviews
+                  {t('reviews')}
                 </a>
               </li>
             </ul>
@@ -102,7 +104,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-white/30 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Mr Lobster. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Mr Lobster. {t('allRightsReserved')}</p>
         </div>
       </div>
     </footer>

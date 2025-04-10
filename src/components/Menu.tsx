@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type MenuItem = {
   name: string;
@@ -11,6 +12,7 @@ type MenuItem = {
 
 const Menu = () => {
   const [selectedTab, setSelectedTab] = useState("drinks");
+  const { t } = useLanguage();
 
   const drinks: MenuItem[] = [
     { name: "Wybiska sok pomarańczowy", description: "250 ml", price: "12" },
@@ -74,22 +76,22 @@ const Menu = () => {
     <section id="menu" className="section-padding bg-restaurant-cream">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-restaurant-red text-center mb-12">
-          Our Menu
+          {t('ourMenu')}
         </h2>
 
         <Tabs defaultValue="drinks" value={selectedTab} onValueChange={setSelectedTab} className="w-full">
           <div className="flex justify-center mb-8">
             <TabsList className="bg-white/70">
-              <TabsTrigger value="drinks" className="text-base">Drinks</TabsTrigger>
-              <TabsTrigger value="appetizers" className="text-base">Appetizers</TabsTrigger>
-              <TabsTrigger value="pasta" className="text-base">Pasta</TabsTrigger>
-              <TabsTrigger value="pizza" className="text-base">Pizza</TabsTrigger>
+              <TabsTrigger value="drinks" className="text-base">{t('drinks')}</TabsTrigger>
+              <TabsTrigger value="appetizers" className="text-base">{t('appetizers')}</TabsTrigger>
+              <TabsTrigger value="pasta" className="text-base">{t('pasta')}</TabsTrigger>
+              <TabsTrigger value="pizza" className="text-base">{t('pizza')}</TabsTrigger>
             </TabsList>
           </div>
 
           <TabsContent value="drinks" className="space-y-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">Cold Drinks</h3>
+              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">{t('coldDrinks')}</h3>
               <div className="space-y-4">
                 {drinks.map((item, index) => (
                   <div key={index} className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0">
@@ -104,7 +106,7 @@ const Menu = () => {
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">Lemonades</h3>
+              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">{t('lemonades')}</h3>
               <div className="space-y-4">
                 {lemonades.map((item, index) => (
                   <div key={index} className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0">
@@ -121,7 +123,7 @@ const Menu = () => {
 
           <TabsContent value="appetizers">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">Appetizers & Desserts</h3>
+              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">{t('appetizersDesserts')}</h3>
               <div className="space-y-4">
                 {appetizers.map((item, index) => (
                   <div key={index} className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0">
@@ -138,7 +140,7 @@ const Menu = () => {
           
           <TabsContent value="pasta">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">Pasta & Risotto</h3>
+              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">{t('pastaRisotto')}</h3>
               <div className="space-y-4">
                 {pasta.map((item, index) => (
                   <div key={index} className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0">
@@ -150,13 +152,13 @@ const Menu = () => {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-gray-600 mt-6 italic text-center">Świeże owoce i dania rybne na zamówienie po wcześniejszej rezerwacji.</p>
+              <p className="text-sm text-gray-600 mt-6 italic text-center">{t('freshFruitsFishNote')}</p>
             </div>
           </TabsContent>
 
           <TabsContent value="pizza">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">Pizza</h3>
+              <h3 className="text-2xl font-semibold text-restaurant-red mb-6 text-center">{t('pizza')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {pizza.slice(0, Math.ceil(pizza.length / 2)).map((item, index) => (
                   <div key={index} className="flex justify-between items-start border-b border-gray-200 pb-3">
@@ -176,7 +178,7 @@ const Menu = () => {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-gray-600 mt-6 italic text-center">Pizza na wynos - opłata za opakowanie - 3 zł</p>
+              <p className="text-sm text-gray-600 mt-6 italic text-center">{t('takeAwayNote')}</p>
             </div>
           </TabsContent>
         </Tabs>

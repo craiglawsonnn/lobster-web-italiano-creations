@@ -2,8 +2,11 @@
 import React from "react";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ReviewsSection = () => {
+  const { t } = useLanguage();
+  
   const reviews = [
     {
       name: "Marco P.",
@@ -29,10 +32,10 @@ const ReviewsSection = () => {
     <section className="section-padding bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-restaurant-red text-center mb-6">
-          What Our Guests Say
+          {t('whatGuestsSay')}
         </h2>
         <p className="text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          Don't just take our word for it. See what our valued customers have to say about their experience at Mr Lobster.
+          {t('reviewsSubtitle')}
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -64,7 +67,7 @@ const ReviewsSection = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center text-restaurant-green hover:text-restaurant-red transition-colors duration-300"
           >
-            <span className="mr-2">View more reviews on TripAdvisor</span>
+            <span className="mr-2">{t('viewMoreReviews')}</span>
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M13.5 19.5h-6a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6"></path>
               <path d="m8.5 13.5 7-7M16.5 11v-4.5h-4.5M16 19.5h4.5V15"></path>
