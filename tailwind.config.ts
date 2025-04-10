@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                restaurant: {
+                    red: '#8B0000',
+                    green: '#556B2F',
+                    cream: '#FFF8DC',
+                    beige: '#F5F5DC',
+                    gold: '#D4AF37',
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -89,7 +97,14 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+			},
+            fontFamily: {
+                'playfair': ['"Playfair Display"', 'serif'],
+                'lato': ['Lato', 'sans-serif'],
+            },
+            backgroundImage: {
+                'hero-pattern': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/placeholder.svg')",
+            }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
