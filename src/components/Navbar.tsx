@@ -3,10 +3,18 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, Facebook, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +69,36 @@ const Navbar = () => {
             </a>
           ))}
           
+          {/* Language Selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className={cn(
+                  "rounded-full p-0 w-8 h-8 overflow-hidden",
+                  scrolled ? "text-gray-800 hover:bg-gray-200" : "text-white hover:bg-white/20"
+                )}
+              >
+                {language === 'en' ? (
+                  <img src="/flags/gb.svg" alt="English" className="w-6 h-6" />
+                ) : (
+                  <img src="/flags/pl.svg" alt="Polski" className="w-6 h-6" />
+                )}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="mt-2">
+              <DropdownMenuItem onClick={() => setLanguage('en')} className="cursor-pointer">
+                <img src="/flags/gb.svg" alt="English" className="w-5 h-5 mr-2" />
+                English
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('pl')} className="cursor-pointer">
+                <img src="/flags/pl.svg" alt="Polski" className="w-5 h-5 mr-2" />
+                Polski
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           <div className="flex items-center space-x-4">
             <a 
               href="https://www.facebook.com/p/Mr-Lobster-Italiano-01-100063553000119/?locale=pl_PL" 
@@ -108,6 +146,25 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            
+            {/* Mobile Language Selector */}
+            <div className="py-4 flex items-center space-x-4">
+              <button
+                onClick={() => { setLanguage('en'); setIsOpen(false); }}
+                className="flex items-center space-x-2 text-gray-800 hover:text-restaurant-red"
+              >
+                <img src="/flags/gb.svg" alt="English" className="w-6 h-6" />
+                <span>English</span>
+              </button>
+              <button
+                onClick={() => { setLanguage('pl'); setIsOpen(false); }}
+                className="flex items-center space-x-2 text-gray-800 hover:text-restaurant-red"
+              >
+                <img src="/flags/pl.svg" alt="Polski" className="w-6 h-6" />
+                <span>Polski</span>
+              </button>
+            </div>
+            
             <div className="flex items-center space-x-6 mt-6">
               <a 
                 href="https://www.facebook.com/p/Mr-Lobster-Italiano-01-100063553000119/?locale=pl_PL" 
